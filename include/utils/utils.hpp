@@ -58,6 +58,7 @@ namespace utils{
         std::cout << "                          Algorithms: [uni | n1d | pal]" << std::endl;
         std::cout << "                          uni: uniform, checkerboard partitioning" << std::endl;
         std::cout << "                          n1d: Nicol's 1D Partitioning" << std::endl;
+        std::cout << "                          rac: refine a cut partitioning" << std::endl;
         std::cout << "                          pal: probe a load partitioning" << std::endl;
         std::cout << "  --ncut <int>          Number of cuts                             (16)" << std::endl;
         std::cout << "  --ngpu <int>          Number of GPUs to use                      (all)" << std::endl;
