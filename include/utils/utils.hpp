@@ -126,6 +126,7 @@ namespace utils{
                 params.part_name = std::string(argv[++i]);
                 if (params.part_name!="pal" &&
                     params.part_name!="n1d" &&
+                    params.part_name!="rac" &&
                     params.part_name!="uni"){
                     std::cout << "Wrong partitioning algorithm." << std::endl;
                     PrintUsage();
@@ -277,6 +278,8 @@ namespace utils{
             cuts = sarma::uniform::partition<Ordinal, Ordinal>(*A_sp, p);
         } else if (alg=="n1d") {
             cuts = sarma::nicol1d::partition<Ordinal, Ordinal>(A_ord->indptr, p);
+        } else if (alg=="rac") {
+            cuts = sarma::refine_a_cut::partition<Ordinal, Ordinal>(*A_ord, p);
         } else {
             A_sp->get_sps();
             cuts = sarma::probe_a_load::partition<Ordinal, Ordinal>(*A_sp, p);

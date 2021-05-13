@@ -288,7 +288,7 @@ namespace sarma {
             std::vector<std::vector<std::vector<Value>>> loadss(num_threads, std::vector<std::vector<Value>>(p.size() - 1, std::vector<Value>(q.size() - 1, 0)));
             const auto v_arr = nicol1d::partition_prefix(indptr, num_threads);
             if (is_using_data()) {
-                #pragma omp parallel for
+                #pragma omp parallel for schedule(dynamic, 1024)
                 for (size_t tid=0; tid<loadss.size(); tid++){
                     auto& loads = loadss[tid];
                     const auto begin = v_arr[tid], end = v_arr[tid + 1];
@@ -300,7 +300,7 @@ namespace sarma {
                     }
                 }
             } else {
-                #pragma omp parallel for
+                #pragma omp parallel for schedule(dynamic, 1024)
                 for (size_t tid=0; tid<loadss.size(); tid++){
                     auto& loads = loadss[tid];
                     const auto begin = v_arr[tid], end = v_arr[tid + 1];
